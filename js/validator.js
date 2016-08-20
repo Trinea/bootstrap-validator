@@ -208,7 +208,7 @@
         var data = {}
         data[$el.attr('name')] = getValue($el)
         $.get($el.data('remote'), data)
-          .fail(function (jqXHR, textStatus, error) { errors.push(decodeURIComponent(getErrorMessage('remote') || error)) })
+          .fail(function (jqXHR, textStatus, error) { errors.push(decodeURIComponent(error && error.length > 0 ? error : getErrorMessage('remote'))) })
           .always(function () { deferred.resolve(errors)})
       })
     } else deferred.resolve(errors)
